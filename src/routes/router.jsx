@@ -8,6 +8,7 @@ const HomePage = lazy(() => import('../pages/HomePage.jsx'));
 const AboutPage = lazy(() => import('../pages/AboutPage.jsx'));
 const PostsPage = lazy(() => import('../pages/PostsPage.jsx'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage.jsx'));
+const CalculatorPage = lazy(() => import('../pages/CalculatorPage.jsx'));
 
 export const router = createBrowserRouter([
     {
@@ -43,6 +44,14 @@ export const router = createBrowserRouter([
                 element: (
                     <Suspense fallback={ <LoadingSpinner />}>
                         <RegisterPage />
+                    </Suspense>
+                )
+            },
+            {
+                path: 'calculator',
+                element: (
+                    <Suspense fallback={ <LoadingSpinner />}>
+                        <CalculatorPage />
                     </Suspense>
                 )
             }
