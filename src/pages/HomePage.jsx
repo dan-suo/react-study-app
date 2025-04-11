@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
-import LoadingSpinner from '../components/ui/LoadingSpinner'
-import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
+import HeroSection from "../components/home/HeroSection";
+import MobileLayout from "../components/home/MobileLayout";
+import DesktopLayout from "../components/home/DesktopLayout";
 
 export default function HomePage() {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -11,21 +15,15 @@ export default function HomePage() {
   }, []);
 
   if (isLoading) {
-    return <LoadingSpinner />; 
+    return <LoadingSpinner />;
   }
 
   return (
     <div className="text-center">
-      <h1 className="text-3xl font-bold mb-2 mt-8">Рассчитайте свою рейв-карту</h1>
-      <p className="text-xl mb-5">
-        Узнай себя лучше
-      </p>
-      <Link 
-        to="/calculator" 
-        className="btn btn-primary btn-lg"
-      >
-        Начать расчёт
-      </Link>
+      <div className="flex justify-center mt-16">
+        <HeroSection />
+      </div>
+      <div>{isMobile ? <MobileLayout /> : <DesktopLayout />}</div>
     </div>
   );
 }
